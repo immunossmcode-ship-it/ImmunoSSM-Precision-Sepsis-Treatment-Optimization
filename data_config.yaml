@@ -1,0 +1,50 @@
+# Replace every placeholder using the manuscript's operational definitions
+# and the data dictionary for the locally licensed database release.
+source:
+  development_database: "MIMIC-IV"
+  external_database: "eICU-CRD"
+  development_version: "REPLACE_WITH_DATABASE_VERSION"
+  external_version: "REPLACE_WITH_DATABASE_VERSION"
+  local_extract_path: "REPLACE_WITH_LOCAL_PATH"
+
+cohort:
+  index_time_definition: "REPLACE_WITH_MANUSCRIPT_DEFINITION"
+  sepsis_definition: "REPLACE_WITH_EXACT_SEPSIS-3_OPERATIONALIZATION"
+  inclusion_rules: "REPLACE_WITH_MANUSCRIPT_RULES"
+  exclusion_rules: "REPLACE_WITH_MANUSCRIPT_RULES"
+  observation_window: "REPLACE_WITH_MANUSCRIPT_WINDOW"
+  outcome_followup: "REPLACE_WITH_MANUSCRIPT_FOLLOWUP"
+
+keys:
+  patient: "subject_id"
+  admission: "hadm_id"
+  icu_stay: "stay_id"
+  timestamp: "charttime"
+
+modalities:
+  vital_signs:
+    - heart_rate
+    - mean_arterial_pressure
+    - respiratory_rate
+    - oxygen_saturation
+    - temperature
+  biomarkers:
+    - lactate
+    - crp
+    - procalcitonin
+    - white_blood_cell_count
+    - neutrophil_lymphocyte_ratio
+    - creatinine
+    - bilirubin
+    - albumin
+  interventions:
+    - vasopressor
+    - fluid_resuscitation
+    - broad_spectrum_antibiotic
+  outcomes:
+    mortality_28d: "REPLACE_WITH_OUTCOME_COLUMN"
+    sofa: "REPLACE_WITH_SOFA_COLUMN_OR_CONSTRUCTION"
+
+temporal:
+  grid_definition: "REPLACE_WITH_MANUSCRIPT_TEMPORAL_GRID"
+  elapsed_time_unit: "REPLACE_WITH_TIME_UNIT"

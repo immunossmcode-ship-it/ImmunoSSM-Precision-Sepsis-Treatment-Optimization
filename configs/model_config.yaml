@@ -1,0 +1,44 @@
+# All numeric architecture settings are deliberately externalized.
+# Populate from the final manuscript/code specification; do not guess.
+architecture:
+  vital_input_dim: "REPLACE_WITH"
+  biomarker_input_dim: "REPLACE_WITH"
+  intervention_input_dim: "REPLACE_WITH"
+  modality_embedding_dim: "REPLACE_WITH"
+  fusion_dim: "REPLACE_WITH"
+  state_dim: "REPLACE_WITH"
+  pste_layers: "REPLACE_WITH"
+  ssm_heads: "REPLACE_WITH"
+  dropout: "REPLACE_WITH"
+
+preprocessing:
+  biomarker_decay_rates: "REPLACE_WITH_PER_BIOMARKER_SETTINGS"
+  freshness_definition: "REPLACE_WITH_MANUSCRIPT_DEFINITION"
+  weight_truncation_quantiles: "REPLACE_WITH_MANUSCRIPT_DEFINITION"
+
+causal:
+  allowed_edges_file: "REPLACE_WITH_PATH_TO_DOMAIN_CONSTRAINTS"
+  forbidden_edges_file: "REPLACE_WITH_PATH_OR_NULL"
+  ci_test: "REPLACE_WITH_MANUSCRIPT_TEST"
+  significance_level: "REPLACE_WITH_MANUSCRIPT_SETTING"
+
+counterfactual:
+  flow_layers: "REPLACE_WITH"
+  hidden_dim: "REPLACE_WITH"
+  monte_carlo_samples: "REPLACE_WITH"
+
+policy:
+  action_specification_file: "REPLACE_WITH_ACTION_BINS_FILE"
+  kl_constraint: "REPLACE_WITH"
+  discount_factor: "REPLACE_WITH"
+  reward_specification: "REPLACE_WITH_MANUSCRIPT_DEFINITION"
+
+training:
+  optimizer: "AdamW"
+  learning_rate: "REPLACE_WITH"
+  weight_decay: "REPLACE_WITH"
+  batch_size: "REPLACE_WITH"
+  epochs: "REPLACE_WITH"
+  gradient_clip: "REPLACE_WITH"
+  loss_weights: "REPLACE_WITH_PER_TASK_SETTINGS"
+  checkpoint_dir: "checkpoints"
