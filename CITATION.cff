@@ -1,0 +1,7 @@
+cff-version: 1.2.0
+message: "Please cite the associated ImmunoSSM research article."
+title: "ImmunoSSM implementation"
+type: software
+authors:
+  - family-names: "REPLACE_WITH"
+    given-names: "REPLACE_WITH"

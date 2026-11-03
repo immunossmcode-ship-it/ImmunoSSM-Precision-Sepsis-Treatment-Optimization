@@ -1,0 +1,10 @@
+# The R2 manuscript describes 5-fold MIMIC-IV cross-validation as its primary
+# development protocol and also mentions a 70:10:20 split in a baseline-evaluation
+# description. Do not combine these protocols. Confirm their distinct intended roles
+# with the study authors before running any experiment.
+primary_protocol: "5-fold patient-level cross-validation on MIMIC-IV"
+external_cohort: "eICU-CRD"
+baseline_split_70_10_20:
+  mentioned_in_manuscript: true
+  role_requires_author_confirmation: true
+  enabled: false

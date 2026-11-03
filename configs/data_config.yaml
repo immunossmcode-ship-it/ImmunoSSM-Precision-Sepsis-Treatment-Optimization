@@ -1,0 +1,48 @@
+# ImmunoSSM R2 data configuration.
+# Database access and SQL/item mappings must be supplied locally; no patient data is included.
+source:
+  development_database: MIMIC-IV
+  development_version: "2.2"
+  external_database: eICU-CRD
+  external_version: "2.0"
+  local_extract_path: null
+
+cohort:
+  age_min_years: 18
+  sepsis_definition: "Sepsis-3: suspected infection with acute organ dysfunction (SOFA increase >= 2)"
+  icu_length_of_stay_min_hours: 4
+  minimum_valid_observation_hours: 6
+  maximum_aggregate_feature_missingness: 0.80
+  exclude_burn_and_trauma: true
+  observation_window_hours: 72
+  mortality_followup_days: 28
+
+keys:
+  patient: subject_id
+  admission: hadm_id
+  icu_stay: stay_id
+  timestamp: charttime
+
+modalities:
+  vital_signs:
+    expected_channel_count: 15
+    feature_names: null  # Populate using the final manuscript variable dictionary and local database mapping.
+  biomarkers:
+    expected_channel_count: 22
+    feature_names: null  # Populate using the final manuscript variable dictionary and local database mapping.
+  interventions:
+    expected_channel_count: 10
+    feature_names: null  # Populate using the final manuscript variable dictionary and local database mapping.
+  outcomes:
+    mortality_28d: null
+    sofa: null
+
+temporal:
+  observation_window_hours: 72
+  temporal_resolution: "hourly"
+  timestamp_unit: "hours_from_index_time"
+
+external_validation:
+  cohort: eICU-CRD
+  use_development_cohort_normalization: true
+  refit_normalization_on_external_cohort: false

@@ -1,0 +1,63 @@
+# Architecture settings explicitly stated in ImmunoSSM R2 are recorded here.
+# null means the manuscript does not provide a sufficiently legible/specific value
+# in the supplied revision text; populate only from the authors' verified implementation.
+architecture:
+  vital_input_dim: 15
+  biomarker_input_dim: 22
+  intervention_input_dim: 10
+  total_input_channels: 47
+  observation_window_hours: 72
+  pste_layers: 6
+  ssm_heads: 16
+  modality_embedding_dim: null
+  fusion_dim: null
+  state_dim: 256
+  dropout: null
+
+vital_encoder:
+  dilation_rates: [1, 2, 4, 8]
+  kernel_size: null
+
+biomarker_encoder:
+  imputation: exponential_decay
+  decay_initialization: "training-cohort biomarker-specific mean inter-measurement interval"
+  confidence_channel: true
+
+pste:
+  initialization: HiPPO-LegS
+  discretization: zero_order_hold
+  matrix_exponential: scaling_and_squaring_with_Pade
+  adaptive_discretization: learnable
+  persistence_gate: learnable
+  fft_convolution: true
+  selective_state_modulation: true
+
+scig:
+  structure_learning: PC
+  conditional_independence_test: "partial_correlation_with_Fisher_Z"
+  score_regularization: BIC
+  clinical_constraints_file: null
+  propensity_weighting: stabilized_IPTW
+  weight_truncation_quantiles: [0.01, 0.99]
+
+cts:
+  generator: conditional_masked_autoregressive_normalizing_flow
+  monte_carlo_sample_count: null
+  training_objective: "IPTW_reweighted_objective_as_defined_in_manuscript"
+
+pton:
+  treatment_domains: [vasopressor, fluid, antimicrobial]
+  policy_learning: doubly_robust_off_policy_policy_gradient
+  behavior_policy: behavior_cloning
+  conservative_constraint: KL_to_behavior_policy
+  reward_definition: "one-hour SOFA increment and terminal 28-day survival"
+  action_discretization: "empirical quantiles from MIMIC-IV development/training data"
+
+heads:
+  mortality_prediction: true
+  biomarker_trajectory_forecasting: true
+  propensity_estimation: true
+  treatment_effect_estimation: true
+  offline_policy_value_estimation: true
+
+# Do not fill nulls with guessed values. Resolve them from the final author implementation.

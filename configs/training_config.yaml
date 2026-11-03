@@ -1,0 +1,33 @@
+# Manuscript-reported training settings.
+framework:
+  pytorch: "2.1.0"
+  cuda: "12.1"
+  hardware_reference: "NVIDIA A100"
+
+reproducibility:
+  random_seed: 42
+
+optimization:
+  optimizer: AdamW
+  learning_rate: null
+  weight_decay: null
+  scheduler: cosine_annealing_with_linear_warmup
+  warmup_epochs: 10
+  epochs: 100
+  batch_size: 64
+  gradient_norm_clip: 1.0
+  mixed_precision: true
+  loss_weights: null  # Manuscript states Bayesian optimization; exact selected values are not legible in source text.
+
+partition:
+  internal_development: "5-fold cross-validation within MIMIC-IV"
+  external_validation: "eICU-CRD held out from model development"
+  grouping_unit: patient
+  normalization_fit: "MIMIC-IV training fold only"
+  external_normalization: "reuse frozen development-fold statistics"
+
+evaluation:
+  resampling_unit: patient
+  independent_random_seed_repetitions: false
+  endpoints: [28_day_mortality, trajectory_forecasting, individualized_treatment_effect, offline_policy_value]
+  metrics: [AUROC, AUPRC, RMSE, PEHE, weighted_importance_sampling]
