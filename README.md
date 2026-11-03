@@ -4,7 +4,7 @@ This repository organizes the proposed **ImmunoSSM** research workflow described
 
 *ImmunoSSM: A HiPPO-Initialized Persistent State-Space Framework with Causal Immunodynamic Trajectory Learning for Precision Sepsis Treatment Optimization.*
 
-It provides code modules, configuration templates, data-access guidance, and workflow entry points. It does **not** contain patient data, trained model weights, fabricated experimental outputs, or precomputed performance claims. It must not be described as a complete validated reproduction until all items in `IMPLEMENTATION_STATUS.md` are completed and independently tested.
+It provides code modules, configuration templates, data-access guidance, and workflow entry points. It does **not** contain patient data, trained model weights, fabricated experimental outputs, or precomputed performance claims. 
 
 ## Proposed research procedure
 
